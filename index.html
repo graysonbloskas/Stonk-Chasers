@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+​
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Stonk Chasers</title>
+  </head>
+​
+  <body>
+    <header class="jumbotron jumbotron-fluid custom-jumbotron">
+      <div class="container text-center">
+        <h1>Stonk Chasers</h1>
+        <h2>
+          Current Time &amp; Date: <br />
+          <span id="time-display">00:00:00</span>
+        </h2>
+      </div>
+    </header>
+​
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-12 col-md-4 col-lg-3">
+          <div class="card custom-card">
+            <div class="card-body">
+              <button class="btn">Create Card</button>
+              <button class="btn">Search</button>
+              <button class="btn">Create Card</button>
+              <div id="checkboxes">
+                <input type="checkbox" id="default">
+                <h4>Default</h4>
+                <input type="checkbox" id="advanced">
+                <h4>Advanced</h4>
+              </div>
+              <div class="hide" id="advancedOptions">
+                
+​
+              </div>  
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+​
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
