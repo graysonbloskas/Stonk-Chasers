@@ -1,2 +1,22 @@
 body {
+    margin: 0;
+    background-color: #321a44;
+    font-family: "sans-serif", "Fira Sans";
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: black;
+}
+
+header h1 {
+    color: white;
+}
+
+.row {
+    background-color: #372b4e;
+    color: black;
+    padding-left: 20px;
+    width: 200px;
 }
