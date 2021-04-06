@@ -41,15 +41,18 @@
             <div class="card-body">
               <label for="search">Search:</label><br>
               <input type="text" id="search" name="search"><br>
-              <input list="currency">
-                <datalist id="currency">
-                  <option value="USD $">
-                  <option value="EUR €">
-                  <option value="GBP £">
-                  <option value="JPY ¥">
-                  <option value="BTC ₿">
-                  <option value="ETH Ξ">  
-                </datalist>
+              
+            <!--Label and dropdown box for currency-->
+              <label for="currency">Currency: </label>
+              <select name="currency"  id="currency">
+                <option value="USD">USD $</option>
+                <option value="EUR">EUR €</option>
+                <option value="GBP">GBP £</option>
+                <option value="JPY">JPY ¥</option>
+                <option value="BTC">BTC ₿</option>
+                <option value="ETH">ETH Ξ </option>
+              </select> 
+
               <div id="checkboxes">
                 <input type="radio" id="default" name="options" value="default">
                 <label for="default">Default</label><br>
