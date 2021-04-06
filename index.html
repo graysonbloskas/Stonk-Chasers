@@ -38,19 +38,34 @@
         <section class="col-12 col-md-4 col-lg-3">
           <div class="card custom-card">
             <div class="card-body">
-              <button class="btn">Create Card</button>
-              <button class="btn">Search</button>
-              <button class="btn">Create Card</button>
+              <label for="search">Search:</label><br>
+              <input type="text" id="search" name="search"><br>
+              <input list="currency">
+                <datalist id="currency">
+                  <option value="USD $">
+                  <option value="EUR €">
+                  <option value="GBP £">
+                  <option value="JPY ¥">
+                  <option value="BTC ₿">
+                  <option value="ETH Ξ">  
+                </datalist>
               <div id="checkboxes">
-                <input type="checkbox" id="default">
-                <h4>Default</h4>
-                <input type="checkbox" id="advanced">
-                <h4>Advanced</h4>
+                <input type="radio" id="default" name="options" value="default">
+                <label for="default">Default</label><br>
+                <input type="radio" id="advanced" name="options" value="advanced">
+                <label for="advanced">Advanced</label><br>
               </div>
               <div class="hide" id="advancedOptions">
-                
-​
+                <input type="checkbox" id="timeline" name="timeline" value="timeline"/>
+​                <label for="timeline">Toggle timeline</label><br>
+                <input type="checkbox" id="histData" name="histData" value="histData"/>
+​                <label for="histData">Toggle historical data</label><br>
+                <label for="buyPrice">Buy Price:</label><br>
+                <input type="text" id="buyPrice" name="buyPrice"><br>
+                <label for="sellPrice">Sell Price:</label><br>
+                <input type="text" id="sellPrice" name="sellPrice"><br>
               </div>  
+              <button class="btn">Create Card</button>
             </div>
           </div>
         </section>
