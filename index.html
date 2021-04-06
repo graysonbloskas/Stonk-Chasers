@@ -7,7 +7,7 @@
     <meta name="Description" content="Enter your description here" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css"
     />
     <link
       rel="stylesheet"
@@ -29,6 +29,7 @@
         <h2>
           Current Time &amp; Date: <br />
           <span id="time-display">00:00:00</span>
+          <!-- The Marquee widget displayed on the jumbotron. -->
         </h2>
         <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#000000" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" ></div>
       </div>
@@ -38,11 +39,12 @@
       <div class="row">
         <section class="col-12 col-md-4 col-lg-3">
           <div class="card custom-card">
+
             <div class="card-body">
               <label for="search">Search:</label><br>
               <input type="text" id="search" name="search"><br>
               
-            <!--Label and dropdown box for currency-->
+              <!--Label and dropdown box for currency-->
               <label for="currency">Currency: </label>
               <select name="currency"  id="currency">
                 <option value="USD">USD $</option>
@@ -52,23 +54,31 @@
                 <option value="BTC">BTC ₿</option>
                 <option value="ETH">ETH Ξ </option>
               </select> 
-
+              
               <div id="checkboxes">
+                <!-- Checkbox for the default selection. We need to decide on what these options are.  -->
                 <input type="radio" id="default" name="options" value="default">
                 <label for="default">Default</label><br>
+                <!-- Checkbox for advance selection options. The options shown below need to be hidden unless this is clicked.  -->
                 <input type="radio" id="advanced" name="options" value="advanced">
                 <label for="advanced">Advanced</label><br>
               </div>
+
               <div class="hide" id="advancedOptions">
+                <!-- Checkbox input for timeline widget option -->
                 <input type="checkbox" id="timeline" name="timeline" value="timeline"/>
 ​                <label for="timeline">Toggle timeline</label><br>
+                <!-- Checkbox input for historic data option -->
                 <input type="checkbox" id="histData" name="histData" value="histData"/>
 ​                <label for="histData">Toggle historical data</label><br>
+                <!-- Area where user can set the price they want to buy at -->
                 <label for="buyPrice">Buy Price:</label><br>
                 <input type="text" id="buyPrice" name="buyPrice"><br>
+                <!-- Area where user can set the price they want to sell at -->
                 <label for="sellPrice">Sell Price:</label><br>
                 <input type="text" id="sellPrice" name="sellPrice"><br>
               </div>  
+
               <button class="btn">Create Card</button>
             </div>
           </div>
