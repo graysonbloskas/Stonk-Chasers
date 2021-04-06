@@ -43,19 +43,18 @@
             <div class="card-body">
               <label for="search">Search:</label><br>
               <input type="text" id="search" name="search"><br>
-              <!-- Curriency dropdown. This needs to eventually span into API to pull symbol images for each currency -->
-              <!-- This also needs to be more clearly differentiated from the search bar above -->
-              <!-- We need to ensure that user can see all of these options when they click on it no matter what. Doesnt do that right now.  -->
-              <input list="currency">
-                <datalist id="currency">
-                  <option value="USD $">
-                  <option value="EUR €">
-                  <option value="GBP £">
-                  <option value="JPY ¥">
-                  <option value="BTC ₿">
-                  <option value="ETH Ξ">  
-                </datalist>
-
+              
+              <!--Label and dropdown box for currency-->
+              <label for="currency">Currency: </label>
+              <select name="currency"  id="currency">
+                <option value="USD">USD $</option>
+                <option value="EUR">EUR €</option>
+                <option value="GBP">GBP £</option>
+                <option value="JPY">JPY ¥</option>
+                <option value="BTC">BTC ₿</option>
+                <option value="ETH">ETH Ξ </option>
+              </select> 
+              
               <div id="checkboxes">
                 <!-- Checkbox for the default selection. We need to decide on what these options are.  -->
                 <input type="radio" id="default" name="options" value="default">
