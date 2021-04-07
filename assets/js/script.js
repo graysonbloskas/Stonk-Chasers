@@ -4,6 +4,10 @@ $("#time-date").text(today.format("MMM Do, YYYY"));
 var time = moment().format("hh:mm A");
 $("#time-display").text(time);
 
+var updateTime = function() {
+  document.getElementById('time-display').innerHTML = moment().format('h:mm:ss A');
+} 
+setInterval(updateTime, 1000);
 
 // var apiTest = function () {
 //     var apiUrl = 'https://www.alphavantage.co/query?function=CRYPTO_RATING&symbol=BTC&apikey=' + alphaApiKey;
