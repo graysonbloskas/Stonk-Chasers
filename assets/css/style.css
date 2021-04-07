@@ -20,3 +20,16 @@ header h1 {
     padding-left: 20px;
     width: 200px;
 }
+
+#date-and-time {
+    padding-right: 25px;
+    text-align: end;
+}
+
+.custom-card-head {
+    max-height: 250px;
+}
+
+.custom-image {
+    vertical-align: auto;
+}
