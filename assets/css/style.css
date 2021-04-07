@@ -1,9 +1,3 @@
-body {
-    margin: 0;
-    background-color: #321a44;
-    font-family: "sans-serif", "Fira Sans";
-}
-
 header {
     padding: 20px;
     text-align: center;
@@ -26,10 +20,34 @@ header h1 {
     text-align: end;
 }
 
+.search-card {
+    min-width: 200px;
+}
 .custom-card-head {
-    max-height: 250px;
+    
+    max-height: 400px;
+    max-width: 2000px;
 }
 
 .custom-image {
     vertical-align: auto;
+
+}
+
+label {
+    color: white;
+}
+
+
+.ticker {
+    background-color: black;
+    width: 100%;
+    height: 75px;
+    top: 0;
+    position: sticky;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
 }
