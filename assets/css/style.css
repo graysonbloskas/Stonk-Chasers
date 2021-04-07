@@ -18,6 +18,7 @@ header h1 {
 #date-and-time {
     padding-right: 25px;
     text-align: end;
+    box-shadow: none;
 }
 
 .search-card {
@@ -27,12 +28,38 @@ header h1 {
     
     max-height: 400px;
     max-width: 2000px;
+    padding-left: 75px;
 }
 
-.custom-image {
-    vertical-align: auto;
-
+@media only screen and (min-width: 1920px) {
+    .custom-card-head {
+        max-inline-size: 750px;
+        background-color: white;
+        text-align: left;
+        box-shadow: none;
+    }
 }
+
+@media screen and (min-width: 1920px){
+    #date-and-time  {
+        text-align: start;
+    }
+}
+
+@media screen and (min-width: 1920px){
+    .custom-image  {
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #date-and-time {
+        background-color: transparent;
+        color: whitesmoke;
+        text-decoration-line: overline;
+    }
+}
+
 
 label {
     color: white;
