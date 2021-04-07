@@ -7,7 +7,7 @@
     <meta name="Description" content="Enter your description here" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css"
     />
     <link
       rel="stylesheet"
@@ -23,16 +23,21 @@
   </head>
 ​
   <body>
-    <header class="jumbotron jumbotron-fluid custom-jumbotron">
-      <div class="container text-center">
-        <h1>Stonk Chasers</h1>
-        <h2>
-          Current Time &amp; Date: <br />
-          <span id="time-display">00:00:00</span>
-        </h2>
-        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#000000" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" ></div>
+    <header class="uk-child-width-expand@s uk-text-left uk-flex-inline custom-card-head" uk-grid>
+      <div class="uk-card uk-card-default uk-card-body custom-image">
+      <img src="./assets/images/Stonk Chaser Logo-02.png" width="auto" height="auto" alt="Stonk Chasers Logo" uk-img>
+    </div>
+    <div class="uk-card uk-card-default uk-card-body" id="date-and-time">
+      <h2 class="uk-margin-remove"><span id="time-date"></span></h2>
+      <h3 class="uk-margin-remove"><span id="time-display"></span></h3>
+    </div> 
+  </header>
+    
+
+        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
+        <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#000000" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" ></div>
       </div>
-    </header>
+
 ​
     <main class="container-fluid">
       <div class="row">
