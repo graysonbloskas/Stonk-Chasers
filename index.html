@@ -5,94 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="Description" content="Enter your description here" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-​
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css"/>
+    <link rel="stylesheet"href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"/>
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Stonk Chasers</title>
   </head>
-​
-  <body>
-
-    <header class="uk-child-width-expand@s uk-text-left uk-flex-inline custom-card-head" uk-grid>
+<body>
+    <div class="ticker">
+        <div style="background-color: black" class="livecoinwatch-widget-5 uk-position-top" id="ticker" lcw-base="USD" lcw-color-tx="#ffffff" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" >  
+        </div>
+    </div>
+    <header class="uk-child-width-expand@s uk-text-left uk-flex-block custom-card-head uk-padding-large" uk-grid>
       <div class="uk-card uk-card-default uk-card-body custom-image">
       <img src="./assets/images/Stonk Chaser Logo-02.png" width="auto" height="auto" alt="Stonk Chasers Logo" uk-img>
-    </div>
+      </div>
     <div class="uk-card uk-card-default uk-card-body" id="date-and-time">
       <h2 class="uk-margin-remove"><span id="time-date"></span></h2>
       <h3 class="uk-margin-remove"><span id="time-display"></span></h3>
     </div> 
   </header>
-    
-
-        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
-        <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#000000" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" ></div>
-​
-    <main class="container-fluid">
-      <div class="row">
-        <section class="col-12 col-md-4 col-lg-3">
-          <div class="card custom-card">
-
-            <div class="card-body">
-              <label for="search">Search:</label><br>
-              <input type="text" id="search" name="search"><br>
-              
-              <!--Label and dropdown box for currency-->
-              <label for="currency">Currency: </label>
-              <select name="currency"  id="currency">
-                <option value="USD">USD $</option>
-                <option value="EUR">EUR €</option>
-                <option value="GBP">GBP £</option>
-                <option value="JPY">JPY ¥</option>
-                <option value="BTC">BTC ₿</option>
-                <option value="ETH">ETH Ξ </option>
-              </select> 
-              
-              <div id="checkboxes">
-                <!-- Checkbox for the default selection. We need to decide on what these options are.  -->
-                <input type="radio" id="default" name="options" value="default">
-                <label for="default">Default</label><br>
-                <!-- Checkbox for advance selection options. The options shown below need to be hidden unless this is clicked.  -->
-                <input type="radio" id="advanced" name="options" value="advanced">
-                <label for="advanced">Advanced</label><br>
-              </div>
-
-              <div class="hide" id="advancedOptions">
-                <!-- Checkbox input for timeline widget option -->
-                <input type="checkbox" id="timeline" name="timeline" value="timeline"/>
-​                <label for="timeline">Toggle timeline</label><br>
-                <!-- Checkbox input for historic data option -->
-                <input type="checkbox" id="histData" name="histData" value="histData"/>
-​                <label for="histData">Toggle historical data</label><br>
-                <!-- Area where user can set the price they want to buy at -->
-                <label for="buyPrice">Buy Price:</label><br>
-                <input type="text" id="buyPrice" name="buyPrice"><br>
-                <!-- Area where user can set the price they want to sell at -->
-                <label for="sellPrice">Sell Price:</label><br>
-                <input type="text" id="sellPrice" name="sellPrice"><br>
-              </div>  
-
-              <button class="btn">Create Card</button>
+<div class="uk-child-width-1-4@s uk-height-match uk-padding-small uk-margin-small" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-small uk-card-body search-card">
+            <form class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Search</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="search" type="text" placeholder="Crypto / Stock">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-select">Select</label>
+                    <div class="uk-form-controls">
+                        <select class="uk-select" id="form-stacked-select">
+                            <option value="USD">$USD</option>
+                            <option value="EUR">EUR €</option>
+                            <option value="GBP">GBP £</option>
+                            <option value="JPY">JPY ¥</option>
+                            <option value="BTC">BTC ₿</option>
+                            <option value="ETH">ETH Ξ </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-form-label">Search Parameters</div>
+                    <div class="uk-form-controls">
+                        <label><input class="uk-radio" id="default-search" type="radio" name="radio1" onclick=toggleHidden(id)></label> Default</label><br>
+                        <label><input class="uk-radio" id="advanced-search" type="radio" name="radio1" onclick=toggleHidden(id)></label> Advanced</label>
+                    </div>
+                </div>
+                <div class="uk-margin hidden" id="advanced-options">
+                    <div class="uk-form-label">Advanced Options</div>
+                    <label><input class="uk-checkbox" type="checkbox"></label> Timeline</label> <br>
+                    <label><input class="uk-checkbox" type="checkbox"> </label> Historical Data</label>
+                
+                <div class="uk-margin"> 
+                    <label class="uk-form-label" for="form-stacked-text">Price Alerts</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="sell-price" type="text" placeholder="Sell Price">
+                        <br><br>
+                        <input class="uk-input" id="buy-price" type="text" placeholder="Buy Price">
+                    </div>
+                </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </main>
-​
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <p uk-margin>
+                <button class="uk-button uk-button-default custom-button">Generate</button>
+                </p>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit-icons.min.js"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
     <script src="./assets/js/apikey.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>

@@ -1,4 +1,3 @@
-
 var today = moment();
 $("#time-date").text(today.format("MMM Do, YYYY"));
 
@@ -65,3 +64,16 @@ $( function() {
       source: availableTags
     });
   } );
+
+ 
+  
+
+function toggleHidden(id) {
+var element = document.querySelector('#advanced-options');
+if(id && id === 'default-search') {
+  element && element.classList.add('hidden');
+}
+else if(id && id === 'advanced-search') {
+element && element.classList.remove('hidden');
+}
+}
