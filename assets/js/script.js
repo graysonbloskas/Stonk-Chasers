@@ -210,6 +210,16 @@ var getCurrentPrice = function(cryptoType) {
   
 });
 }
-
-
-
+//creates a div with a coin widget
+function coinWidget(cryptoType){
+  var coinWidget = $('<div>');
+  
+  coinWidget.attr('class', 'livecoinwatch-widget-1');
+  coinWidget.attr('lcw-coin', cryptoType);
+  coinWidget.attr('lcw-base', currencySelectorEl.value);
+  coinWidget.attr('lcw-period', 'd');
+  coinWidget.attr('lcw-color-tx', '#ffffff');
+  coinWidget.attr('lcw-color-pr', '#abb8c3');
+  coinWidget.attr('lcw-color-bg', '#1f2434');
+  coinWidget.attr('lcw-border-w', '1');
+  }
