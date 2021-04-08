@@ -147,7 +147,7 @@ var generateCardHandler = function (event) {
   console.log(cryptoType);
   
   if (cryptoType) {
-    // somefunction(cryptoType);
+    getHealthIndex(cryptoType);
    
     searchBar.textContent = '';
     searchBar.value = '';
@@ -158,3 +158,23 @@ var generateCardHandler = function (event) {
 
 // The actual event listener for the generate card button that begins all of the subsequent functions.
 generateCardBtn.addEventListener('submit', generateCardHandler);
+
+// Function that pulls the needed data from the alphaAdvantage API for health index scores.
+
+var getHealthIndex = function(cryptoType) {
+  var apiUrl = 'https://www.alphavantage.co/query?function=CRYPTO_RATING&symbol=' + cryptoType
+  + '&apikey=' + alphaApiKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+
+
