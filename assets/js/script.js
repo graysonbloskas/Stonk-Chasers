@@ -9,58 +9,11 @@ var updateTime = function() {
 } 
 setInterval(updateTime, 1000);
 
-// var apiTest = function () {
-//     var apiUrl = 'https://www.alphavantage.co/query?function=CRYPTO_RATING&symbol=BTC&apikey=' + alphaApiKey;
-
-
-//  fetch(apiUrl)
-//   .then(function (response) {
-//     return response.json();
-
-//   })
-//   .then(function (data) {
-//     console.log(data);
-    
-    
-//   });
-// }
 
 // Variable needed for autofill function. 
-var availableTags = []
+var availableTags = ['1ST', '2GIVE', '808', 'ABT', 'ABY', 'AC', 'ACT', 'ADA', 'ADX', 'ADT', 'AE', 'AEON', 'AGI', 'AGRS', 'AI', 'AID', 'AION', 'AIR', 'AKY', 'ALIS', 'AMBER', 'AMP', 'AMPL', 'ANC', 'ANT', 'APPC', 'APX', 'ARDR', 'ARK', 'ARN', 'AST', 'ATB', 'ATM', 'ATS', 'AUR', 'AVT', 'B3', 'BAT', 'BAY', 'BBR', 'BCAP', 'BCC', 'BCD', 'BCH', 'BCN', 'BCPT', 'BCX', 'BCY', 'BDL', 'BEE', 'BELA', 'BET', 'BFT', 'BIS', 'BITB', 'BITBTC', 'BITCNY', 'BITEUR', 'BITGOLD', 'BITSILVER', 'BITUSD', 'BIX', 'BLITZ', 'BLK', 'BLN', 'BLOCK', 'BLZ', 'BMC', 'BNB', 'BNT', 'BNTY', 'BOST', 'BOT', 'BQ', 'BRD', 'BRK', 'BRX', 'BTA', 'BTC', 'BTCD', 'BTCP', 'BTG', 'BTM', 'BTS', 'BTSR', 'BTX', 'BURST', 'BUSD', 'BUZZ', 'BYC', 'BYTOM', 'C20', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ]
 var searchBar = $('#search')
 
-// Auto complete fetch request provided through API. This function uses the input value from the search bar to use an autofill option.
-
-var autofillTargets = function(searchValue) {
-    // var apiUrl = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + searchValue + '&apikey='+ alphaApiKey
-    var apiUrl = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tes&apikey='+ alphaApiKey
-
-   fetch(apiUrl)
-  .then(function (response) {
-    return response.json();
-
-  })
-  .then(function (data) {
-    console.log(data);
-    data.bestMatches.forEach(element => {
-        var symbol = element['1. symbol']
-        var name = element['2. name']
-        console.log(symbol);
-        console.log(name);
-        // pushes the values into a global array used for autofill function
-        availableTags.push(symbol);
-        availableTags.push(name);
-        console.log(availableTags);
-    });
-    
-  });
-}
-
-autofillTargets();
-// startBtn.addEventListener(update, autofillTargets){
-// capture user input
-// autofillTargets(searchValue); 
-// }
 
 $( function() {
 
@@ -69,8 +22,6 @@ $( function() {
     });
   } );
 
- 
-  
 
 function toggleHidden(id) {
 var element = document.querySelector('#advanced-options');
