@@ -148,7 +148,8 @@ var generateCardHandler = function (event) {
   
   if (cryptoType) {
     getHealthIndex(cryptoType);
-   
+    getVolume(cryptoType);
+    getCurrentPrice(cryptoType);
     searchBar.textContent = '';
     searchBar.value = '';
   } else {
@@ -176,5 +177,39 @@ var getHealthIndex = function(cryptoType) {
   
 });
 }
+
+// This function pulls the needed data from the alphaAdvantage API for the 24hr Volume. 
+var getVolume = function(cryptoType) {
+  var marketCurrency = currencySelectorEl.value;
+  var apiUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=' + cryptoType + '&market=' + marketCurrency + '&apikey=' + alphaApiKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+
+// This function calls the current coin price through the CoinGecko API & returns the data for future use. 
+var getCurrentPrice = function(cryptoType) {
+  var apiUrl = 'https://min-api.cryptocompare.com/data/price?fsym=' + cryptoType + '&tsyms=' + currencySelectorEl.value + '&api_key=' + cryptoCompareKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+
 
 
