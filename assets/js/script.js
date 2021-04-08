@@ -62,7 +62,7 @@ element && element.classList.remove('hidden');
 }
 
 // Series of if / else statements that change the display currency of the ticker depending on user choice.
-// Cant figure out how to get the actual widget to refresh so it displays the new lcw-base value.
+
 var currencySelectorEl = document.querySelector('#form-stacked-select')
 function toggleCurrency(event) {  
 event.preventDefault();
@@ -137,3 +137,23 @@ if (currencySelectorEl.value == 'USD') {
 
 currencySelectorEl.addEventListener('change', toggleCurrency);
 
+// Event handler for the generate card button that will invoke the functions needed to call the APIs, prevent the default of the page, & reset the values of the input fields for card generation.
+var generateCardBtn = document.querySelector('#generate-card');
+
+var generateCardHandler = function (event) {
+  event.preventDefault();
+
+  var cryptoType = searchBar.value.trim();
+  
+  if (cryptoType) {
+    // somefunction(cryptoType);
+   
+    searchBar.textContent = '';
+    searchBar.value = '';
+  } else {
+    alert('Please enter a valid crypto-currency');
+  }
+};
+
+// The actual event listener for the generate card button that begins all of the subsequent functions.
+generateCardBtn.addEventListener('submit', generateCardHandler);
