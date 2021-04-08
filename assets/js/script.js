@@ -4,9 +4,16 @@ $("#time-date").text(today.format("MMM Do, YYYY"));
 var time = moment().format("hh:mm A");
 $("#time-display").text(time);
 
+
 // Variable needed for autofill function. 
 // var availableTags = []
 // var searchBar = $('#search')
+
+var updateTime = function() {
+  document.getElementById('time-display').innerHTML = moment().format('h:mm:ss A');
+} 
+setInterval(updateTime, 1000);
+
 
 // // Auto complete fetch request provided through API. This function uses the input value from the search bar to use an autofill option.
 
