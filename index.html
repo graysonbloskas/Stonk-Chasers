@@ -56,11 +56,11 @@
 <div class="uk-child-width-1-4@s uk-height-match uk-padding-small uk-margin-small" uk-grid>
     <div>
         <div class="uk-card uk-card-default uk-card-small uk-card-body search-card">
-            <form class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
+            <form id="generate-card" class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text">Search</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="search" type="text" placeholder="Crypto / Stock">
+                        <input class="uk-input" name="search" id="search" type="text" placeholder="Crypto / Stock">
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <p uk-margin>
-                <button id="generate-card" class="uk-button uk-button-default custom-button">Generate</button>
+                <button type="submit" class="uk-button uk-button-default custom-button">Generate</button>
                 </p>
             </form>
         </div>
