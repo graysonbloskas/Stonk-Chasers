@@ -225,3 +225,69 @@ var dayVol = $('#day-volume');
 //   })
  
 // }
+// The actual event listener for the generate card button that begins all of the subsequent functions.
+generateCardBtn.addEventListener('submit', generateCardHandler);
+
+// Function that pulls the needed data from the alphaAdvantage API for health index scores.
+
+var getHealthIndex = function(cryptoType) {
+  var apiUrl = 'https://www.alphavantage.co/query?function=CRYPTO_RATING&symbol=' + cryptoType
+  + '&apikey=' + alphaApiKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+
+// This function pulls the needed data from the alphaAdvantage API for the 24hr Volume. 
+var getVolume = function(cryptoType) {
+  var marketCurrency = currencySelectorEl.value;
+  var apiUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=' + cryptoType + '&market=' + marketCurrency + '&apikey=' + alphaApiKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+
+// This function calls the current coin price through the CoinGecko API & returns the data for future use. 
+var getCurrentPrice = function(cryptoType) {
+  var apiUrl = 'https://min-api.cryptocompare.com/data/price?fsym=' + cryptoType + '&tsyms=' + currencySelectorEl.value + '&api_key=' + cryptoCompareKey
+
+ return fetch(apiUrl)
+.then(function (response) {
+  return response.json();
+
+})
+.then(function (data) {
+ return console.log(data);
+  // displayHealthIndex(data);
+  
+});
+}
+//creates a div with a coin widget
+function coinWidget(cryptoType){
+  var coinWidget = $('<div>');
+  
+  coinWidget.attr('class', 'livecoinwatch-widget-1');
+  coinWidget.attr('lcw-coin', cryptoType);
+  coinWidget.attr('lcw-base', currencySelectorEl.value);
+  coinWidget.attr('lcw-period', 'd');
+  coinWidget.attr('lcw-color-tx', '#ffffff');
+  coinWidget.attr('lcw-color-pr', '#abb8c3');
+  coinWidget.attr('lcw-color-bg', '#1f2434');
+  coinWidget.attr('lcw-border-w', '1');
+  }
