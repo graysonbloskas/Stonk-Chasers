@@ -205,7 +205,9 @@ function setCryptoCard(cryptoType, cryptoLabel, res) {
     day_high: highLowData[dayHighKey] || 'Unavailable', //api
     day_low: highLowData[dayLowKey] || 'Unavailable', //api
     day_vol: highLowData['5. volume']
+
   }; 
+ 
 
 
 var currentSearchData = window.localStorage.getItem('cryptoCard');
@@ -280,7 +282,7 @@ function populateCard(element) {
     cardBodyP1.innerHTML = 'Current Price: ' + element.current_price;
     cardBodyP2.innerHTML = '24 Hour High: ' + element.day_high;
     cardBodyP3.innerHTML = '24 Hour Low: ' + element.day_low;
-    cardBodyP4.innerHTML = '24 Hour Volume: ' + element.current_price;
+    cardBodyP4.innerHTML = '24 Hour Volume: ' + element.day_vol;
     pArr.push(cardBodyP1, cardBodyP2, cardBodyP3, cardBodyP4);
 
     // var widget = _coinWidget(element.ticker);
@@ -367,6 +369,17 @@ async function getCurrentPrice(cryptoType) {
 //   var _cryptoType = cryptoType && cryptoType.toUpperCase();
 //   var coinWidget = $('<div>');
   
+
+
+  // clears local storage.
+  var clearBtn = document.querySelector('#clear-storage');
+  clearBtn.addEventListener('click', clearStorage);
+
+function clearStorage () {
+    localStorage.clear();
+    location.reload();
+    };
+
 //   coinWidget.attr('class', 'livecoinwatch-widget-1');
 //   coinWidget.attr('lcw-coin', _cryptoType);
 //   coinWidget.attr('lcw-base', currencySelectorEl.value);
@@ -379,3 +392,4 @@ async function getCurrentPrice(cryptoType) {
 //   coinWidget.css({'width': '380px', 'height': '200px', 'border-radius': '5px', 'border-style': 'solid', 'text-align': 'left', 'font-family': "Helvetica Neue", 'margin': '5px', 'overflow': 'hidden', 'box-sizing': 'content-box', 'background-color':'#1f2434', 'border-color':'#000001', 'border-width':'1px'});
 //   return coinWidget;
 //   }
+
