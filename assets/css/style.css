@@ -4,10 +4,6 @@ header {
     background: black;
 }
 
-header h1 {
-    color: white;
-}
-
 .row {
     background-color: #372b4e;
     color: black;
@@ -24,6 +20,7 @@ header h1 {
 .search-card {
     min-width: 200px;
 }
+
 .custom-card-head {
     
     max-height: 400px;
@@ -81,4 +78,22 @@ label {
 
 .hidden {
     display: none;
+}
+
+.uk-cards {
+    max-height: 398px;
+}
+
+.uk-link-button {
+    background-color: rgb(26, 212, 26);
+    color:white;
+    max-height: 50px;
+}
+
+
+
+@media screen and (min-width: 1000px){
+    .uk-cards {
+        background-color: white;
+    }
 }
