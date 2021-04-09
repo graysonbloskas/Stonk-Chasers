@@ -14,6 +14,11 @@ var updateTime = function() {
 } 
 setInterval(updateTime, 1000);
 
+// autochecks default radio
+
+radioToCheck = document.getElementsByName('radio1')[0];
+radioToCheck.checked = true;
+
 // // Variable needed for autofill function. 
 
 var searchBar = $('#search');
@@ -354,7 +359,7 @@ async function getCurrentPrice(cryptoType) {
 });
 }
 //creates a div with a coin widget
-function coinWidget(cryptoType){
+/*function coinWidget(cryptoType){
   var coinWidget = $('<div>');
   
   coinWidget.attr('class', 'livecoinwatch-widget-1');
@@ -366,3 +371,4 @@ function coinWidget(cryptoType){
   coinWidget.attr('lcw-color-bg', '#1f2434');
   coinWidget.attr('lcw-border-w', '1');
   }
+*/
