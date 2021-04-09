@@ -56,11 +56,11 @@
 <div class="uk-child-width-1-4@s uk-height-match uk-padding-small uk-margin-small" uk-grid>
     <div>
         <div class="uk-card uk-card-default uk-card-small uk-card-body search-card">
-            <form id="generate-card" class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
+            <form class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text">Search</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" name="search" id="search" type="text" placeholder="Crypto / Stock">
+                        <input class="uk-input" id="search" type="text" placeholder="Crypto / Stock">
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -101,12 +101,47 @@
                 </div>
             </div>
             <p uk-margin>
-                <button type="submit" class="uk-button uk-button-default custom-button">Generate</button>
+                <button class="uk-button uk-button-default custom-button">Generate</button>
                 </p>
             </form>
         </div>
         </div>
+
+          <div class="uk-cards uk-card uk-card-default uk-width-1-2@m">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <img class="uk-border-circle" width="40" height="40" src="assets/images/bitcoin.png">
+                    </div>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom" href="#">Bitcoin</h3>
+                          <a class="uk-link-button uk-button uk-button-default custom-button uk-position-right" href="#">950</a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+              <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                <div>...
+                  <img src="" alt="">
+                </div>
+                <div>
+                  <p>Current Price: </p>
+                  <p>24 Hour High: </p>
+                  <p>30 Day High: </p>
+                  <p>All Time High: </p>
+                  <p>24 Hour Volume: </p>
+                </div>
+            </div>
+            <div class="uk-card-footer"></div>
+            <div class="price uk-grid-divider uk-child-width-expand@s" uk-grid>
+            <p>Buy Price: </p>
+            <p>Sell Price: </p>
+            </div>
+        </div>
+        </div>
+        </div>
     </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit-icons.min.js"></script>    
