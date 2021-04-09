@@ -53,7 +53,7 @@
       <h3 class="uk-margin-remove"><span id="time-display"></span></h3>
     </div> 
   </header>
-<div class="uk-child-width-1-4@s uk-height-match uk-padding-small uk-margin-small" uk-grid>
+<div class="uk-child-width-1-4@s uk-height-match uk-padding-small uk-margin-small" uk-grid id="main-body">
     <div>
         <div class="uk-card uk-card-default uk-card-small uk-card-body search-card">
             <form id="generate-card" class="uk-form-stacked uk-form-width-small uk-padding-small custom-search-card">
@@ -101,12 +101,13 @@
                 </div>
             </div>
             <p uk-margin>
-                <button type="submit" class="uk-button uk-button-default custom-button">Generate</button>
+                <button id="generate-card" class="uk-button uk-button-default custom-button" onclick="generateCardHandler(event)">Generate</button>
                 </p>
             </form>
         </div>
         </div>
     </div>
+  
 </div>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit-icons.min.js"></script>    
