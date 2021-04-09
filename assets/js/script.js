@@ -203,7 +203,7 @@ function setCryptoCard(cryptoType, cryptoLabel, res) {
     day_vol: highLowData['5. volume']
 
   }; 
-  console.log(highLowData['5. volume']);
+ 
 
 
 var currentSearchData = window.localStorage.getItem('cryptoCard');
@@ -375,7 +375,6 @@ function coinWidget(cryptoType){
   clearBtn.addEventListener('click', clearStorage);
 
 function clearStorage () {
-    console.log('test');
     localStorage.clear();
     location.reload();
     };
