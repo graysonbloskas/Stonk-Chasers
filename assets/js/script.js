@@ -1,4 +1,7 @@
 // All of the necessary moment code to both display and update the time display on the page. 
+window.onload = function() {
+  setPageData();
+}
 var today = moment();
 $("#time-date").text(today.format("MMM Do, YYYY"));
 
@@ -18,6 +21,15 @@ var enterBtn = $('#generate-card');
 var dropdownResponse = [];
 
 var availableTags = [];
+
+function setPageData() {
+  var cardArray = window.localStorage.getItem('cryptoCard');
+  var parseCards = cardArray && JSON.parse(cardArray) || [];
+
+  parseCards && parseCards.forEach(card => {
+    populateCard(card);
+  });
+}
 
 var autofillTargets = function() {
     var apiUrl = 'https://api.coingecko.com/api/v3/coins/list';
@@ -150,16 +162,16 @@ currencySelectorEl.addEventListener('change', toggleCurrency);
 // Event handler for the generate card button that will invoke the functions needed to call the APIs, prevent the default of the page, & reset the values of the input fields for card generation.
 var generateCardBtn = document.querySelector('#generate-card');
 
-var generateCardHandler = function (event) {
+var generateCardHandler = async function (event) {
   event.preventDefault();
 
   var cryptoType = searchBar.val().trim();
   var cryptoLabel = dropdownResponse && dropdownResponse.find(x => x.value === cryptoType).label;
 
   
-  if (cryptoType) {
-    // somefunction(cryptoType);
-   setCryptoCard(cryptoType, cryptoLabel);
+  if (cryptoLabel) {
+   awaitData(cryptoLabel, cryptoType);
+
     searchBar.textContent = '';
     searchBar.value = '';
   } else {
@@ -167,113 +179,176 @@ var generateCardHandler = function (event) {
   }
 };
 
-function setCryptoCard(cryptoType, cryptoLabel) {
-  var icon = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconpacks.net%2Ffree-icon%2Fcryptocurrency-coin-2422.html&psig=AOvVaw32BydyjUbdahEvKRV2hYG1&ust=1618010434189000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjmutzk7-8CFQAAAAAdAAAAABAD';
+async function awaitData(cl, ct){
+  var data = await Promise.all([getHealthIndex(cl), getVolume(cl), getCurrentPrice(cl)]);
+  console.log(data);
+  if(!!data){
+    return setCryptoCard(ct, cl, data);
+  }
+  return data;
+}
+function setCryptoCard(cryptoType, cryptoLabel, res) {
+  console.log(res);
+  var icon = 'https://www.iconpacks.net/icons/2/free-cryptocurrency-coin-icon-2422-thumb.png';
+  var health = res && res[0];
+  var currentCurrency = currencySelectorEl.value;
+  var currPrice = res && res[2];
   var card = {
     icon: icon, //going to replace with api
-    health_index: 900, //going to replace with api
+    health_index: health,
     name: cryptoType, //going to add the api
     ticker: cryptoLabel, //going to add api
-    current_price: 52000, //api
+    current_price: currPrice[currentCurrency], //api
     day_high: 60000, //api
-    day_low: 50000 //api
-    
-
+    day_low: 50000, //api
+    day_vol: 6000000
   }; 
-  var cardArray = window.localStorage.getItem('cryptoCard');
-  var parseCards = cardArray && JSON.parse(cardArray) || [];
-  var cards = parseCards && [...parseCards, card] || [];
 
-  var stringCard = JSON.stringify(cards);
+
+var currentSearchData = window.localStorage.getItem('cryptoCard');
+var searchString = currentSearchData && JSON.parse(currentSearchData) || [];
+var searchdata = [...searchString, card];
+  var stringCard = JSON.stringify(searchdata);
   window.localStorage.setItem('cryptoCard', stringCard);
 
+  populateCard(card);
 
-// 
-// healthIndex.text(900);
-// return;
 }
 
-function populateCard() {
-var headerName = $('#crypto-name');
-var healthIndex = $('#health-index');
-var icon = $('#card-icon');
-var currentPrice = $('#current-price');
-var dayHigh = $('#day-high')
-var dayLow = $('#day-low');
-var dayVol = $('#day-volume');
+function populateCard(element) {
+    var cardMainDiv = document.createElement('div');
+    var cardDivClass = ['uk-card', 'uk-card-default', 'uk-width-1-2@m'];
+    cardMainDiv.classList.add(...cardDivClass);
 
-// headerName.text(cryptoType);
+    var cardInnerDiv = document.createElement('div');
+    var cardInnerClass = ['uk-card-header'];
+    cardInnerDiv.classList.add(...cardInnerClass);
+
+
+    var cardInnerSecondDiv = document.createElement('div');
+    var cardInnerSecondClass = ['uk-grid-small', 'uk-flex-middle', 'uk-grid'];
+    cardInnerSecondDiv.classList.add(...cardInnerSecondClass);
+
+
+    var cardInnerThirdDiv = document.createElement('div');
+    var cardInnerThirdClass = ['uk-width-auto', 'uk-first-column'];
+    cardInnerThirdDiv.classList.add(...cardInnerThirdClass);
+
+    var cardInnerFourthDiv = document.createElement('div');
+    var cardInnerFourthClass = ['uk-width-expand'];
+    cardInnerFourthDiv.classList.add(...cardInnerFourthClass);
+
+    var image = document.createElement('img');
+    var imageClass = ['uk-border-circle'];
+    image.classList.add(...imageClass);
+    image.src = element.icon;
+    image.width = "60";
+    image.height = "60";
+
+    var h3 = document.createElement('h3');
+    var h3Class = ['uk-card-title', 'uk-margin-remove-bottom'];
+    h3.classList.add(...h3Class);
+    h3.innerHTML = element.name;
+
+    var p = document.createElement('p');
+    var pClass = ['uk-text-meta', 'uk-margin-right', 'uk-position-top-right']; 
+    p.classList.add(...pClass);
+    p.innerHTML = 'Health Index: ' + element.health_index;
+
+    cardMainDiv.append(cardInnerDiv);
+    cardInnerDiv.append(cardInnerSecondDiv);
+
+    cardInnerThirdDiv.append(image);
+    cardInnerFourthDiv.append(h3);
+    cardInnerFourthDiv.append(p);
+
+    cardInnerSecondDiv.append(cardInnerThirdDiv);
+    cardInnerSecondDiv.append(cardInnerFourthDiv);
+
+    var cardBody = document.createElement('div');
+    cardBody.classList.add('uk-card-body');
+    var cardBodyP1 = document.createElement('p');
+    var cardBodyP2 = document.createElement('p');
+    var cardBodyP3 = document.createElement('p');
+    var cardBodyP4 = document.createElement('p');
+    var pArr = [];
+
+    cardBodyP1.innerHTML = 'Current Price: ' + element.current_price;
+    cardBodyP2.innerHTML = '24 Hour High: ' + element.day_high;
+    cardBodyP3.innerHTML = '24 Hour Low: ' + element.day_low;
+    cardBodyP4.innerHTML = '24 Hour Volume: ' + element.current_price;
+    pArr.push(cardBodyP1, cardBodyP2, cardBodyP3, cardBodyP4);
+
+    cardBody.append(...pArr);
+    cardMainDiv.append(cardBody);
+
+    console.log(cardMainDiv);
+    var cardData = document.getElementById('main-body');
+    return cardData.append(cardMainDiv);
+
 }
 
 
-
-// function coinImages(symbol) {
-//   var coinUrl = 'https://cryptoicons.org/api/color/' + symbol + '/600/ff00ff';
-//   var headers = new Headers();
-//   headers.append('Access-Control-Allow-Origin', '*');
-
-//    fetch(coinUrl, {
-//     method: 'GET',
-//     mode: 'no-cors',
-//     credentials: 'include'
-//   })
-//   .then(function (response) {
-//     return response.blob();
-//   })
-//   .then(function(blob){
-//     return URL.createObjectURL(blob);
-//   })
- 
-// }
 // The actual event listener for the generate card button that begins all of the subsequent functions.
 generateCardBtn.addEventListener('submit', generateCardHandler);
 
 // Function that pulls the needed data from the alphaAdvantage API for health index scores.
-
-var getHealthIndex = function(cryptoType) {
+async function getHealthIndex(cryptoType) {
   var apiUrl = 'https://www.alphavantage.co/query?function=CRYPTO_RATING&symbol=' + cryptoType
   + '&apikey=' + alphaApiKey
 
  return fetch(apiUrl)
-.then(function (response) {
-  return response.json();
+ .then(function (response) {
+  var res =  response.json();
+  return res;
 
-})
+ })
 .then(function (data) {
- return console.log(data);
-  // displayHealthIndex(data);
+    var res = data;
+  var val =  res['Crypto Rating (FCAS)']['3. fcas rating'];
+  if(Object.keys(val).length === 0){
+    return 'Not Available';
+  }
+ return val;
   
 });
 }
 
 // This function pulls the needed data from the alphaAdvantage API for the 24hr Volume. 
-var getVolume = function(cryptoType) {
+async function getVolume(cryptoType) {
   var marketCurrency = currencySelectorEl.value;
   var apiUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=' + cryptoType + '&market=' + marketCurrency + '&apikey=' + alphaApiKey
 
  return fetch(apiUrl)
 .then(function (response) {
-  return response.json();
+ var res =  response.json();
+ return res;
 
 })
 .then(function (data) {
- return console.log(data);
-  // displayHealthIndex(data);
-  
+  var res = data;
+var val =  res['Time Series (Digital Currency Daily)'];
+if(Object.keys(val).length === 0){
+  return 'Not Available';
+}
+var _data = [val];
+return _data[_data.length - 1];
+
 });
 }
 
 // This function calls the current coin price through the CoinGecko API & returns the data for future use. 
-var getCurrentPrice = function(cryptoType) {
+async function getCurrentPrice(cryptoType) {
   var apiUrl = 'https://min-api.cryptocompare.com/data/price?fsym=' + cryptoType + '&tsyms=' + currencySelectorEl.value + '&api_key=' + cryptoCompareKey
 
  return fetch(apiUrl)
-.then(function (response) {
-  return response.json();
-
-})
+ .then(function (response) {
+  var res =  response.json();
+  return res;
+ 
+ })
 .then(function (data) {
- return console.log(data);
+ return data;
   // displayHealthIndex(data);
   
 });
