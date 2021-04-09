@@ -21,7 +21,7 @@ var enterBtn = $('#generate-card');
 var dropdownResponse = [];
 
 var availableTags = [];
-
+// Grabs from local storage, sets on DOM. Calls populate card. 
 function setPageData() {
   var cardArray = window.localStorage.getItem('cryptoCard');
   var parseCards = cardArray && JSON.parse(cardArray) || [];
@@ -30,7 +30,7 @@ function setPageData() {
     populateCard(card);
   });
 }
-
+// Autofill targets calls out coins list API, sets available tags, and populates the drop down. 
 var autofillTargets = function() {
     var apiUrl = 'https://api.coingecko.com/api/v3/coins/list';
 
@@ -158,6 +158,7 @@ if (currencySelectorEl.value == 'USD') {
 currencySelectorEl.addEventListener('change', toggleCurrency);
 
 // Event handler for the generate card button that will invoke the functions needed to call the APIs, prevent the default of the page, & reset the values of the input fields for card generation.
+// // Await data from our multiple API calls, and then await data function calls our card, setting our card data. 
 var generateCardBtn = document.querySelector('#generate-card');
 
 var generateCardHandler = async function (event) {
@@ -176,14 +177,17 @@ var generateCardHandler = async function (event) {
     alert('Please enter a valid crypto-currency');
   }
 };
-
+// promise.all awaits all API calls to return before populating the page with data. 
 async function awaitData(cl, ct){
   var data = await Promise.all([getHealthIndex(cl), getVolume(cl), getCurrentPrice(cl)]);
   if(!!data){
-    return setCryptoCard(ct, cl, data);
+    setCryptoCard(ct, cl, data);
+    
+    return;
   }
   return data;
 }
+// defines the card data object that is going in local storage. 
 function setCryptoCard(cryptoType, cryptoLabel, res) {
   var icon = 'https://www.iconpacks.net/icons/2/free-cryptocurrency-coin-icon-2422-thumb.png';
   var health = res && res[0];
@@ -215,9 +219,10 @@ var searchdata = [...searchString, card];
   populateCard(card);
 
 }
-
+// This long and extremely complex function dynamically creates the cards, appends them to the page
 function populateCard(element) {
-    var cardMainDiv = document.createElement('div');
+    var cardMainDiv = document.createElement('div'); 
+    var cardMainId = cardMainDiv.setAttribute('id', 'main-card-body');
     var cardDivClass = ['uk-card', 'uk-card-default', 'uk-width-1-2@m'];
     cardMainDiv.classList.add(...cardDivClass);
 
@@ -280,8 +285,12 @@ function populateCard(element) {
     cardBodyP4.innerHTML = '24 Hour Volume: ' + element.day_vol;
     pArr.push(cardBodyP1, cardBodyP2, cardBodyP3, cardBodyP4);
 
+    // var widget = _coinWidget(element.ticker);
+    // cardBody.append(widget[0]);
+
     cardBody.append(...pArr);
     cardMainDiv.append(cardBody);
+
 
     var cardData = document.getElementById('main-body');
     return cardData.append(cardMainDiv);
@@ -351,23 +360,15 @@ async function getCurrentPrice(cryptoType) {
  })
 .then(function (data) {
  return data;
-  // displayHealthIndex(data);
+
   
 });
 }
 //creates a div with a coin widget
-function coinWidget(cryptoType){
-  var coinWidget = $('<div>');
+// function _coinWidget(cryptoType){
+//   var _cryptoType = cryptoType && cryptoType.toUpperCase();
+//   var coinWidget = $('<div>');
   
-  coinWidget.attr('class', 'livecoinwatch-widget-1');
-  coinWidget.attr('lcw-coin', cryptoType);
-  coinWidget.attr('lcw-base', currencySelectorEl.value);
-  coinWidget.attr('lcw-period', 'd');
-  coinWidget.attr('lcw-color-tx', '#ffffff');
-  coinWidget.attr('lcw-color-pr', '#abb8c3');
-  coinWidget.attr('lcw-color-bg', '#1f2434');
-  coinWidget.attr('lcw-border-w', '1');
-  }
 
 
   // clears local storage.
@@ -378,3 +379,17 @@ function clearStorage () {
     localStorage.clear();
     location.reload();
     };
+
+//   coinWidget.attr('class', 'livecoinwatch-widget-1');
+//   coinWidget.attr('lcw-coin', _cryptoType);
+//   coinWidget.attr('lcw-base', currencySelectorEl.value);
+//   coinWidget.attr('lcw-period', 'd');
+//   coinWidget.attr('lcw-secondary', _cryptoType);
+//   coinWidget.attr('lcw-color-tx', '#ffffff');
+//   coinWidget.attr('lcw-color-pr', '#abb8c3');
+//   coinWidget.attr('lcw-color-bg', '#1f2434');
+//   coinWidget.attr('lcw-border-w', '1');
+//   coinWidget.css({'width': '380px', 'height': '200px', 'border-radius': '5px', 'border-style': 'solid', 'text-align': 'left', 'font-family': "Helvetica Neue", 'margin': '5px', 'overflow': 'hidden', 'box-sizing': 'content-box', 'background-color':'#1f2434', 'border-color':'#000001', 'border-width':'1px'});
+//   return coinWidget;
+//   }
+
