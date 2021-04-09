@@ -201,7 +201,9 @@ function setCryptoCard(cryptoType, cryptoLabel, res) {
     day_high: highLowData[dayHighKey] || 'Unavailable', //api
     day_low: highLowData[dayLowKey] || 'Unavailable', //api
     day_vol: highLowData['5. volume']
+
   }; 
+  console.log(highLowData['5. volume']);
 
 
 var currentSearchData = window.localStorage.getItem('cryptoCard');
@@ -275,7 +277,7 @@ function populateCard(element) {
     cardBodyP1.innerHTML = 'Current Price: ' + element.current_price;
     cardBodyP2.innerHTML = '24 Hour High: ' + element.day_high;
     cardBodyP3.innerHTML = '24 Hour Low: ' + element.day_low;
-    cardBodyP4.innerHTML = '24 Hour Volume: ' + element.current_price;
+    cardBodyP4.innerHTML = '24 Hour Volume: ' + element.day_vol;
     pArr.push(cardBodyP1, cardBodyP2, cardBodyP3, cardBodyP4);
 
     cardBody.append(...pArr);
@@ -366,3 +368,14 @@ function coinWidget(cryptoType){
   coinWidget.attr('lcw-color-bg', '#1f2434');
   coinWidget.attr('lcw-border-w', '1');
   }
+
+
+  // clears local storage.
+  var clearBtn = document.querySelector('#clear-storage');
+  clearBtn.addEventListener('click', clearStorage);
+
+function clearStorage () {
+    console.log('test');
+    localStorage.clear();
+    location.reload();
+    };
