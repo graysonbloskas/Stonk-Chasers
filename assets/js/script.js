@@ -285,9 +285,6 @@ function populateCard(element) {
     cardBodyP4.innerHTML = '24 Hour Volume: ' + element.day_vol;
     pArr.push(cardBodyP1, cardBodyP2, cardBodyP3, cardBodyP4);
 
-    // var widget = _coinWidget(element.ticker);
-    // cardBody.append(widget[0]);
-
     cardBody.append(...pArr);
     cardMainDiv.append(cardBody);
 
@@ -364,12 +361,6 @@ async function getCurrentPrice(cryptoType) {
   
 });
 }
-//creates a div with a coin widget
-// function _coinWidget(cryptoType){
-//   var _cryptoType = cryptoType && cryptoType.toUpperCase();
-//   var coinWidget = $('<div>');
-  
-
 
   // clears local storage.
   var clearBtn = document.querySelector('#clear-storage');
@@ -380,16 +371,4 @@ function clearStorage () {
     location.reload();
     };
 
-//   coinWidget.attr('class', 'livecoinwatch-widget-1');
-//   coinWidget.attr('lcw-coin', _cryptoType);
-//   coinWidget.attr('lcw-base', currencySelectorEl.value);
-//   coinWidget.attr('lcw-period', 'd');
-//   coinWidget.attr('lcw-secondary', _cryptoType);
-//   coinWidget.attr('lcw-color-tx', '#ffffff');
-//   coinWidget.attr('lcw-color-pr', '#abb8c3');
-//   coinWidget.attr('lcw-color-bg', '#1f2434');
-//   coinWidget.attr('lcw-border-w', '1');
-//   coinWidget.css({'width': '380px', 'height': '200px', 'border-radius': '5px', 'border-style': 'solid', 'text-align': 'left', 'font-family': "Helvetica Neue", 'margin': '5px', 'overflow': 'hidden', 'box-sizing': 'content-box', 'background-color':'#1f2434', 'border-color':'#000001', 'border-width':'1px'});
-//   return coinWidget;
-//   }
 
